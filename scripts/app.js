@@ -1,17 +1,3 @@
-// Copyright 2016 Google Inc.
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//      http://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 
 (function() {
   'use strict';
@@ -50,13 +36,13 @@
     var selected = select.options[select.selectedIndex];
     var key = selected.value;
     var label = selected.textContent;
-    // TODO init the app.selectedCities array here
+
     if (!app.selectedCities) {
       app.selectedCities = [];
 
     }
     app.getForecast(key, label);
-    // TODO push the selected city to the array and save here
+
     app.selectedCities.push({key: key, label: label});
     app.saveSelectedCities();
     app.toggleAddDialog(false);
@@ -338,11 +324,6 @@
    *
    * Code required to start the app
    *
-   * NOTE: To simplify this codelab, we've used localStorage.
-   *   localStorage is a synchronous API and has serious performance
-   *   implications. It should not be used in production applications!
-   *   Instead, check out IDB (https://www.npmjs.com/package/idb) or
-   *   SimpleDB (https://gist.github.com/inexorabletash/c8069c042b734519680c)
    ************************************************************************/
   app.selectedCities = localStorage.selectedCities;
   if (app.selectedCities) {
@@ -382,7 +363,7 @@
           if (request.readyState === XMLHttpRequest.DONE) {
               if (request.status === 200) {
                   //var response = JSON.parse(request.response);
-                  console.log("RESPONSE : " + request.response);
+                  //console.log("RESPONSE : " + request.response);
               }
           }
       };
