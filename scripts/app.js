@@ -121,7 +121,7 @@
     card.querySelector('.date').textContent = current.date;
     card.querySelector('.current .icon').classList.add(app.getIconClass(current.code));
     card.querySelector('.current .temperature .value').textContent =
-      Math.round(current.temp);
+      Math.round((current.temp -32) * 5 /9);
     card.querySelector('.current .sunrise').textContent = sunrise;
     card.querySelector('.current .sunset').textContent = sunset;
     card.querySelector('.current .humidity').textContent =
@@ -140,9 +140,9 @@
           app.daysOfWeek[(i + today) % 7];
         nextDay.querySelector('.icon').classList.add(app.getIconClass(daily.code));
         nextDay.querySelector('.temp-high .value').textContent =
-          Math.round(daily.high);
+          Math.round((daily.high - 32) * 5 / 9);
         nextDay.querySelector('.temp-low .value').textContent =
-          Math.round(daily.low);
+          Math.round((daily.low -32) * 5 / 9);
       }
     }
     if (app.isLoading) {
@@ -372,4 +372,23 @@
           console.log('Service worker registered.');
         });
   }
+
+  function getLocationData() {
+      // Fetch the latest data.
+      var location = 'hyderabad';
+      var reqUrl = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20geo.places%20where%20text%3D%22Place%20' + location + '%22&format=json';
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function() {
+          if (request.readyState === XMLHttpRequest.DONE) {
+              if (request.status === 200) {
+                  //var response = JSON.parse(request.response);
+                  console.log("RESPONSE : " + request.response);
+              }
+          }
+      };
+      request.open('GET', reqUrl);
+      request.send();
+  }
+
+    getLocationData();
 })();
