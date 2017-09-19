@@ -8,6 +8,10 @@
   },
   "author": "kishor",
   "license": "ISC",
+  "engines": {
+    "node": "~6.11.2",
+    "npm": "~3.10.10"
+  },
   "dependencies": {
     "express": "^4.15.4"
   }
